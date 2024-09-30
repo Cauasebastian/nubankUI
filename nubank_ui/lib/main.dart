@@ -27,8 +27,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Conta"),
+        leading: IconButton(
+          icon: const Icon(Icons.account_circle),
+          onPressed: () {
+            // Ação do ícone principal
+          },
+        ),
         backgroundColor: Colors.deepPurple,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.remove_red_eye_outlined),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.help_outline),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.mark_email_read_outlined),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,6 +55,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text(
+                'Nome da Conta',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 4),
               const Text(
                 'R\$1000,00',
                 style: TextStyle(
@@ -64,25 +91,28 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                "Guarde seu dinheiro em caixinhas",
-                style: TextStyle(
-                  color: Colors.purple,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+              Card(
+                elevation: 2,
+                child: ListTile(
+                  leading: const Icon(Icons.credit_card),
+                  title: const Text('Guarde seu dinheiro em caixinhas'),
+                  subtitle: const Text('Acessando a área de planejamento'),
+                  onTap: () {
+                    print('Item tapped');
+                  },
                 ),
               ),
-              const Text(
-                "Acessando a área de planejamento",
-                style: TextStyle(color: Colors.grey),
-              ),
               const SizedBox(height: 16),
-              _buildSection(
-                title: 'Cartão de Crédito',
-                amount: 'R\$2.123,39',
-                dueDate: 'Vencimento dia 15',
-                buttonLabel: 'Renegociar',
-                onPressed: () {},
+              // Esse container agora vai ocupar toda a largura da tela
+              Container(
+                width: double.infinity, // Define a largura total da tela
+                child: _buildSection(
+                  title: 'Cartão de Crédito',
+                  amount: 'R\$2.123,39',
+                  dueDate: 'Vencimento dia 15',
+                  buttonLabel: 'Renegociar',
+                  onPressed: () {},
+                ),
               ),
               const SizedBox(height: 16),
               _buildSection(
@@ -91,6 +121,25 @@ class HomePage extends StatelessWidget {
                 dueDate: '',
                 buttonLabel: '',
                 onPressed: null,
+              ),
+              const SizedBox(height: 16),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0, -1),
+                      blurRadius: 4,
+                    ),
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0, 1),
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
