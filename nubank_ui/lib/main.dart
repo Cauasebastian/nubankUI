@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+//codigo feito por Cauã Sebastian
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -27,12 +27,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        leading: IconButton(
-          icon: const Icon(Icons.person_outline, color: Colors.white),
-          onPressed: () {
-            // Ação do ícone principal
-          },
+        backgroundColor: const Color(0xFF8A05BE), // Cor ajustada
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0), // Padding para centralizar o CircleAvatar
+          child: CircleAvatar(
+            backgroundColor: const Color(0xFFBA4DE3), // Fundo roxo especificado
+            child: IconButton(
+              icon: const Icon(Icons.person_outline, color: Color(0xFFF5F5F5)),
+              onPressed: () {
+                // Ação do ícone principal
+              },
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -61,19 +67,19 @@ class HomePage extends StatelessWidget {
                 // Ação ao clicar na seta
               },
               icon: Icons.chevron_right,
-            ),
+            ), // Reduziu o padding entre "Conta" e o valor
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: const Text(
                 'R\$1000,00',
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 26, // Tamanho ajustado
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Espaçamento reduzido
+            const SizedBox(height: 20), // Espaçamento reduzido para 20px
 
             // Botões principais
             Padding(
@@ -81,14 +87,14 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildIconButton(Icons.pix, 'Área Pix'), // Mantido conforme solicitado
+                  _buildIconButton(Icons.pix, 'Área Pix'),
                   _buildIconButton(Icons.money, 'Pagamentos'),
                   _buildIconButton(Icons.qr_code, 'QRCode'),
                   _buildIconButton(Icons.attach_money, 'Transferir'),
                 ],
               ),
             ),
-            const SizedBox(height: 20), // Espaçamento reduzido
+            const SizedBox(height: 30), // Espaçamento mantido em 30px
 
             // Seção: Meus Cartões
             _buildCardSection(
@@ -97,18 +103,21 @@ class HomePage extends StatelessWidget {
               subtitle: '',
               onPressed: () {},
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15), // Espaçamento antes do próximo card
 
             // Seção: Guarde seu dinheiro em caixinhas
             _buildCardSection(
               leadingIcon: null,
-              //diminua o tamanho desse ou me diga onde modificar
               title: 'Guarde seu dinheiro em caixinhas',
               subtitle: 'Acessando a área de planejamento',
-              titleColor: const Color(0xFF8A05BE),
+              titleColor: const Color(0xFF8A05BE), // Cor ajustada
               onPressed: () {},
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
+
+            // Adicionando uma linha acima da seção "Cartão de Crédito"
+            const Divider(thickness: 1, color: Colors.black12),
+            const SizedBox(height: 30),
 
             // Seção: Cartão de Crédito
             _buildDetailedSection(
@@ -117,8 +126,12 @@ class HomePage extends StatelessWidget {
               dueDate: 'Vencimento dia 15',
               buttonLabel: 'Renegociar',
               onPressed: () {},
+              showSubtitle: true, // Indica que deve mostrar "Fatura fechada"
             ),
-            const Divider(height: 1, color: Colors.black12),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30.0), // Padding de 30px
+              child: const Divider(height: 1, color: Colors.black12),
+            ),
 
             // Seção: Empréstimo
             _buildDetailedSection(
@@ -128,9 +141,13 @@ class HomePage extends StatelessWidget {
               buttonLabel: '',
               onPressed: null,
               isSmallAmount: true,
+              showSubtitle: false, // Não mostrar "Fatura fechada"
             ),
-            const Divider(height: 1, color: Colors.black12),
-            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30.0), // Padding de 30px
+              child: const Divider(height: 1, color: Colors.black12),
+            ),
+            const SizedBox(height: 30),
 
             // Seção: Descubra Mais
             Padding(
@@ -151,22 +168,24 @@ class HomePage extends StatelessWidget {
     required IconData icon,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Padding ajustado
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0), // Reduziu o padding vertical de 10px para 5px
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
             style: const TextStyle(
-              fontSize: 24,
+              fontSize: 24, // Tamanho ajustado
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
-          IconButton(
-            icon: Icon(icon, color: Colors.black),
-            onPressed: onPressed,
-          ),
+      IconButton(
+        icon: const Icon(Icons.chevron_right, color: Colors.black, size: 40.0), // Aumenta o tamanho da seta para 48.0
+        onPressed: onPressed,
+        padding: EdgeInsets.zero, // Remove padding extra se necessário
+        constraints: const BoxConstraints(), // Remove restrições de tamanho
+      ),
         ],
       ),
     );
@@ -177,9 +196,9 @@ class HomePage extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          backgroundColor: Colors.deepPurple[100],
+          backgroundColor: Colors.deepPurple[50],
           radius: 28,
-          child: Icon(icon, color: Colors.deepPurple, size: 28),
+          child: Icon(icon, color: Colors.black, size: 28),
         ),
         const SizedBox(height: 8),
         Text(
@@ -202,7 +221,7 @@ class HomePage extends StatelessWidget {
     required VoidCallback onPressed,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15.0), // Padding vertical ajustado para 15px
       child: Card(
         elevation: 2,
         child: Padding(
@@ -232,7 +251,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
+//Codigo feito por Cauã Sebastian
   // Método para construir as seções detalhadas (Cartão de Crédito e Empréstimo)
   Widget _buildDetailedSection({
     required String title,
@@ -241,9 +260,10 @@ class HomePage extends StatelessWidget {
     required String buttonLabel,
     required VoidCallback? onPressed,
     bool isSmallAmount = false,
+    required bool showSubtitle, // Novo parâmetro para mostrar "Fatura fechada"
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0), // Espaçamento ajustado para 10px
       child: Container(
         width: double.infinity,
         color: Colors.white, // Fundo branco
@@ -259,40 +279,53 @@ class HomePage extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontSize: 24,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.chevron_right, color: Colors.black),
+                  icon: const Icon(Icons.chevron_right, color: Colors.black, size: 40.0), // Aumenta o tamanho da seta para 48.0
                   onPressed: onPressed,
+                  padding: EdgeInsets.zero, // Remove padding extra se necessário
+                  constraints: const BoxConstraints(), // Remove restrições de tamanho
                 ),
               ],
             ),
+            if (showSubtitle) ...[
+              const SizedBox(height: 5),
+              const Text(
+                'Fatura fechada',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black54, // Fonte leve
+                ),
+              ),
+            ],
             const SizedBox(height: 5),
             Text(
               amount,
               style: TextStyle(
                 fontSize: isSmallAmount ? 18 : 24, // Fonte ajustada
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.normal,
+                color: isSmallAmount ? Colors.black54 : Colors.black,
               ),
             ),
             if (dueDate.isNotEmpty) ...[
               const SizedBox(height: 5),
               Text(
                 dueDate,
-                style: const TextStyle(fontSize: 18, color: Colors.black54),
+                style: const TextStyle(fontSize: 18, color: Colors.black54,),
               ),
             ],
             if (buttonLabel.isNotEmpty) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: 15), // Espaçamento ajustado para 15px
               ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple[100],
+                  backgroundColor: Colors.deepPurple[50], // Cor corrigida e mantida
                 ),
                 child: Text(
                   buttonLabel,
-                  style: const TextStyle(color: Colors.deepPurple),
+                  style: const TextStyle(color: Color(0xFF313030)),
                 ),
               ),
             ],
@@ -301,7 +334,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
+//Cauã S
   // Método para construir a seção "Descubra Mais"
   Widget _buildDiscoverMore(BuildContext context) {
     return Container(
@@ -312,7 +345,7 @@ class HomePage extends StatelessWidget {
         children: [
           const Text(
             'Descubra Mais',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal),
           ),
           const SizedBox(height: 16),
           Container(
@@ -322,7 +355,7 @@ class HomePage extends StatelessWidget {
               color: Colors.deepPurple[50],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0), // Padding de 10px
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -330,7 +363,7 @@ class HomePage extends StatelessWidget {
                   Image.asset(
                     'lib/assets/seguroVida.png',
                     fit: BoxFit.cover,
-                    height: 150, // Defina uma altura adequada
+                    height: 150, // Altura ajustada
                     width: double.infinity,
                   ),
                   const SizedBox(height: 5),
@@ -347,16 +380,19 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(fontSize: 18, color: Colors.black54),
                   ),
                   const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Ação ao clicar em "Conhecer"
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
-                    ),
-                    child: const Text(
-                      'Conhecer',
-                      style: TextStyle(color: Colors.white),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0, bottom: 10.0), // Padding ajustado
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Ação ao clicar em "Conhecer"
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF8A05BE), // Cor ajustada
+                      ),
+                      child: const Text(
+                        'Conhecer',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ],
