@@ -251,7 +251,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-//Codigo feito por Cauã Sebastian
+//Codigo feito por Cauã Sebastian, Não Copie
   // Método para construir as seções detalhadas (Cartão de Crédito e Empréstimo)
   Widget _buildDetailedSection({
     required String title,

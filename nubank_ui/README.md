@@ -1,6 +1,6 @@
 # nubank_ui
 
-A new Flutter project.
+Projeto feito por Cauã Sebastian para disciplina de desenvolvimento Mobile
 
 ## Getting Started
 
