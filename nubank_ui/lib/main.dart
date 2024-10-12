@@ -191,6 +191,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  // Cs
+
   // Método para construir os botões principais
   Widget _buildIconButton(IconData icon, String label) {
     return Column(
