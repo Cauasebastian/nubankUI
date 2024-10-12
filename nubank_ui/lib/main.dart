@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Espaçamento reduzido para 20px
+            const SizedBox(height: 10), // Espaçamento reduzido para 10px
 
             // Botões principais
             Padding(
@@ -318,10 +318,12 @@ class HomePage extends StatelessWidget {
             ],
             if (buttonLabel.isNotEmpty) ...[
               const SizedBox(height: 15), // Espaçamento ajustado para 15px
+
+              //Botao de Renegociar
               ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple[50], // Cor corrigida e mantida
+                  backgroundColor: Color(0xFFF7F2FA), // Cor cinza clara levemente rosado,como na tela 1
                 ),
                 child: Text(
                   buttonLabel,
